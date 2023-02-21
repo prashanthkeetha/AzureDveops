@@ -1,0 +1,20 @@
+---
+- name: installing spc in pipeline
+  hosts: all
+  become: yes
+  tasks:
+    - name: installing java
+      ansible.builtin.apt:
+        name: openjdk-17-jdk
+        update-cache: yes
+        state: present
+    - name: s3 bucket url
+      ansible.builtin.get_url:
+        url: https://springpetclinic17.s3.us-west-2.amazonaws.com/spring-petclinic-3.0.0-SNAPSHOT.jar
+        dest: /tmp 
+    - name: coping the service file
+      ansible.builtin.copy:
+        src: petclinic.src
+        dest: /etc/systemd/system
+        remote_src: yes
+        mode: '777'  
