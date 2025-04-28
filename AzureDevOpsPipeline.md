@@ -15,6 +15,27 @@
 2. A tool where developers can submit the code
 3. A tool for managing the project
 
+# Steps that happens in the CI
+
+Devloper writes the code
+       |
+Pushes the code into vcs
+       |
+Build the code  ----------------------------------                                  |
+       |                                          |
+Test the code                                     |
+       |                                          | This all steps are come into the Build and packaging the application 
+Code analysis                                     |
+       |                                          |
+Package tha application (Into jar or war files)---   |
+       |
+we have artifacts after packaging the application
+       |
+Push artifactory to repository
+       |
+Release Activities.
+
+
 # Things we need
 * GitHub account
 * From my understanding we will create the Azure DevOps account using GitHub
@@ -44,6 +65,18 @@
         b) Repos: This is where developers commit code(that means where devlopers push the code to the repository)
              * Azure Repos support (Git)
                      |
+             * To creata repository inside the project we use REPOS click on the repos and files(Inside that add
+                   New repository,
+                       | 
+                   Import Repository and
+                       | 
+                   Manage Repository.
+                    * Adding a new repository: just adds a new source code repository to that project.(It doesn't mean adding new project)
+                    * Importing New repository: It allows us to bring existing repository from an external source like GitHub into 
+                      current Azure DevOps Project as a new Repository.
+                        * If you're moving a project from GitHub to Azure DevOps, you can use the "Import Repository" option to bring in      
+                        the repository, including its entire commit history, into your Azure DevOps project without needing to manually clone and push the data.
+               * After creating Repository we can see the clone which have (SSH AND HTTPS) login 
                      
             i) Files:
             ii) Commits:
@@ -67,6 +100,26 @@
              ii) Progress report:
              iii) Runs:
         e) Artifacts: This service manage build artifacts
+
+
+# Connections:
+--------------
+
+# This process is for classic editor without using the Yaml file.
+
+* Azure DevOps to connect with the external service or external cloud services like (GitHub, AWS and Azure) need {CONNECTIONS}
+                                                                                                                 -------------
+* After completing the connection we have {added the required details of the project regarding the (Docker container, packaging 
+  application from there save and queue and run the PIPELINE hosted agent)}
+
+# WE HAVE A PRALLEL JOBS THERE MULTIPLE TYPES.
+1. PRIVATE PROJECTS {THIS IS WE USED IN THE ORGANIZATIONS}
+   * Microsoft Hosted there is (0) Prallel Jobs are allowed 
+   * Self Hosted there is (1) Prallel Jobs are allowed
+2. PUBLIC PROJECTS
+   * Microsoft Hosted there is (0) Prallel Jobs are allowed
+   * Self Hosted there is (unlimited) Prallel Jobs are allowed
+
            
 
         
